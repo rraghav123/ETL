@@ -21,7 +21,9 @@ const fileParser = (req, res) => {
       const fileName = Object.keys(file)[0];
       fs.appendFile(path.join(__dirname, 'logs/logs.txt'),
         `fileName-${file[fileName].name}__fileSize-${file[fileName].size}__fileType-${file[fileName].type}  \n`,
-      );
+        (err) => {
+        if(err) throw err;
+        });
       res.status(200).json({
         result: 'ok',
         message: 'File uploaded successfully'
@@ -31,7 +33,7 @@ const fileParser = (req, res) => {
   })
 };
 
-// CONVERT CSV TO JSON
+// CONVERT CSV TO JSON;
 const convertCSVtoJSON = (file, fileName) => {
   const csvFilePath = path.join(__dirname, 'upload', path.basename(file[fileName].path));
   csv()
@@ -50,7 +52,10 @@ const convertCSVtoJSON = (file, fileName) => {
         if(err) throw err;
         else {
           fs.appendFile(path.join(__dirname, 'logs/logs.txt'),
-            `${fileName} converted to ${path.parse(fileName).name}.json\n`
+            `${fileName} converted to ${path.parse(fileName).name}.json\n`,
+            (err) => {
+            if(err) throw err;
+            }
           )
         }
       })

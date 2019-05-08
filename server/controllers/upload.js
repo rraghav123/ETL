@@ -12,16 +12,14 @@ const pusher = new Pusher({
   appId: KEYS.PUSHER_APP_ID,
   key: KEYS.PUSHER_APP_KEY,
   secret: KEYS.PUSHER_APP_SECRET,
-  cluster: KEYS.PUSHER_APP_CLUSTER,
-  encrypted: true,
+  cluster: KEYS.PUSHER_APP_CLUSTER
 });
 
-router.use((req, res, next) => {
-  fs.appendFile(path.join(__dirname, '../', 'logs/logs.txt'),
-    `${req.protocol}://${req.get('host')}${req.originalUrl} ${moment().format()}\n`,
-    );
-  next();
-});
+// router.use((req, res, next) => {
+//   fs.appendFile(path.join(__dirname, '../', 'logs/logs.txt'),
+//     `${req.protocol}://${req.get('host')}${req.originalUrl} ${moment().format()}\n`,
+//     );
+// });
 
 router.post('/', (req, res, next) => {
   // progress

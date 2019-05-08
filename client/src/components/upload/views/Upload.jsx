@@ -21,14 +21,8 @@ const Upload = () => {
     const handleSubmit = (e) => {
         const formData = new FormData();
         formData.append(file.name, file);
-        handleUploadingState(true);
-        fileUpload(formData)
-            .then((response) => {
-                response.json()
-                    .then(res => {
-                        console.log(res);
-                    });
-            });
+        handleUploadingState(false);
+        fileUpload(formData);
     };
 
     const checkFileType = () => {
