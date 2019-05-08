@@ -9,8 +9,7 @@ const ProgressBar = (props) => {
     const [progress, handleProgress] = useState(0);
     useEffect(() => {
         const pusher = new Pusher(KEY.PUSHER_APP_KEY, {
-            cluster: KEY.PUSHER_APP_CLUSTER,
-            encrypted: true
+            cluster: KEY.PUSHER_APP_CLUSTER
         });
         const channel = pusher.subscribe('upload');
         channel.bind('progress', data => {

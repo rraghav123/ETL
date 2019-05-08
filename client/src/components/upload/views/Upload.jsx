@@ -21,7 +21,7 @@ const Upload = () => {
     const handleSubmit = (e) => {
         const formData = new FormData();
         formData.append(file.name, file);
-        handleUploadingState(false);
+        handleUploadingState(true);
         fileUpload(formData);
     };
 
@@ -50,7 +50,7 @@ const Upload = () => {
     const renderFile = () => (
         <div className="upload__files__row">
             <div className="upload__files__fileName">{file.name}</div>
-            {
+          {
                 uploading &&
                 <ProgressBar
                     fileSize={(file.size / 1024).toFixed(2)}
