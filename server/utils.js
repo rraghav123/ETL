@@ -5,6 +5,15 @@ const fs = require('fs');
 
 //PARSE UPLOADED FILES
 const fileParser = (req, res) => {
+  const dir =  path.join(__dirname, 'upload');
+  if(!fs.existsSync(dir)) {
+    fs.mkdir(path.join(__dirname, 'upload'), {}, function(err) {
+      if(err){
+        throw err;
+      }
+      console.log("upload Folder created")
+    });
+  }
   const form = new IncomingForm();
   form.uploadDir = path.join(__dirname, 'upload');
   form.keepExtensions = true;
