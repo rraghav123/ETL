@@ -1,0 +1,27 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix ../client",
+    "client-packages": "npm install --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.8",
+    "express": "^4.16.4",
+    "formidable": "^1.2.1",
+    "moment": "^2.24.0",
+    "pusher": "^2.2.0",
+    "uuid": "^3.3.2"
+  }
+}
