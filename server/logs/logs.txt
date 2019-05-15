@@ -1,8 +1,0 @@
-http://localhost:8080/upload 2019-05-08T21:43:30+05:30
-http://localhost:8080/upload 2019-05-08T21:43:53+05:30
-fileName-C2ImportCalEventSample.csv__fileSize-545__fileType-text/csv  
-C2ImportCalEventSample.csv converted to C2ImportCalEventSample.json
-fileName-C2ImportCalEventSample.csv__fileSize-545__fileType-text/csv  
-C2ImportCalEventSample.csv converted to C2ImportCalEventSample.json
-fileName-C2ImportCalEventSample.csv__fileSize-545__fileType-text/csv  
-C2ImportCalEventSample.csv converted to C2ImportCalEventSample.json

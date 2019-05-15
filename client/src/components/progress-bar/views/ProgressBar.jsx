@@ -4,9 +4,16 @@ import Pusher from 'pusher-js';
 
 import KEY from "../../../../config/keys";
 import "../styles/progress-bar.scss";
-
+/**
+ *
+ * @returns UI for progerss Bar
+ */
 const ProgressBar = (props) => {
     const [progress, handleProgress] = useState(0);
+
+    /**
+     * LOGIC TO COMUNICATE WITH UPLOAD SERVICE TO CALCULATE PROGRESS
+     */
     useEffect(() => {
         const pusher = new Pusher(KEY.PUSHER_APP_KEY, {
             cluster: KEY.PUSHER_APP_CLUSTER
@@ -20,7 +27,9 @@ const ProgressBar = (props) => {
             }
         });
     });
-
+    /**
+     * Calculate Current upload progress and renders it
+     */
     const renderFileProgress = () => {
         const { fileSize } = props;
         const bytesUploaded = ((fileSize * progress) / 100).toFixed(2);
@@ -45,7 +54,9 @@ const ProgressBar = (props) => {
 };
 
 ProgressBar.propTypes = {
-    fileSize: PropTypes.string
+    fileSize: PropTypes.string,
+    handleUploadState: PropTypes.func.isRequired,
+    handleUploadingState: PropTypes.func.isRequired
 };
 
 ProgressBar.defaultProps = {

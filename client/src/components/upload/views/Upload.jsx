@@ -13,44 +13,66 @@ const Upload = () => {
     const [file, handleFile] = useState("");
     const [uploading, handleUploadingState] = useState(false);
     const [uploaded, handleUploadState] = useState(false);
+
+    /**
+     *
+     * @param {*} file File selected by user
+     * this function will fire when user adds a file
+     */
     const onFilesAdded = (file) => {
-      handleUploadState(false);
+        handleUploadState(false);
         handleFile(file);
     };
 
-    const handleSubmit = (e) => {
+    /**
+     *
+     * Handle FormSubmit
+     */
+    const handleSubmit = () => {
         const formData = new FormData();
         formData.append(file.name, file);
         handleUploadingState(true);
         fileUpload(formData);
     };
 
-    const checkFileType = () => {
-      // check file type and size (csv and 10MB)
-      return !(file.type === "text/csv" && file.size < UPLOAD_STATICS.FILE_SIZE);
-
+    /**
+     * Check Selected file size
+     */
+    const checkFileSize = () => {
+        // check file type and size (csv and 10MB)
+        return (file.size > UPLOAD_STATICS.FILE_SIZE);
     };
 
+
+    /**
+     * Check isButtonDisable logic
+     */
     const isButtonDisabled = () => {
         let isDisabled = true;
         if (uploading) {
             isDisabled = true;
         } else if (file) {
-          isDisabled = checkFileType()
+            isDisabled = checkFileSize();
         }
         return isDisabled;
     };
 
+    /**
+     * Get Button custom classNames
+     */
     const getButtonClass = () => {
         return isButtonDisabled() ?
             'upload__actions__customButton upload__actions__customButton--disabled' :
             'upload__actions__customButton';
     };
 
+    /**
+     * Render Filename, ProgressBar, UploadFinish message
+     */
     const renderFile = () => (
         <div className="upload__files__row">
             <div className="upload__files__fileName">{file.name}</div>
-          {
+            {
                 uploading &&
                 <ProgressBar
                     fileSize={(file.size / 1024).toFixed(2)}
@@ -65,15 +87,16 @@ const Upload = () => {
         </div>
     );
 
+    /**
+     * Render Error Messages
+     */
     const getErrorMessage = useMemo(() => {
-      if(file) {
-        if(file.type !=="text/csv") {
-          return ERROR_MESSAGES.ERROR_FILE_TYPE;
-        } else if( file.size > UPLOAD_STATICS.FILE_SIZE) {
-          return ERROR_MESSAGES.ERROR_FILE_SIZE;
+        if (file) {
+            if (file.size > UPLOAD_STATICS.FILE_SIZE) {
+                return ERROR_MESSAGES.ERROR_FILE_SIZE;
+            }
         }
-      }
-      return "";
+        return "";
     }, [file]);
 
     return (
